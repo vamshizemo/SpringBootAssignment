@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+<title>
+    Make Your Todo List
+</title>
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+</head>
+<body>
+<h2>Your Todo Tasks</h2>
+<form action="#" id="taskform" th:action="@{/mytodolist/save}" th:object="${theTodoList}" method="POST">
+
+Add Task:
+    <input type="text" th:field="*{description}" id="intask" autocomplete="off">
+
+</form>
+
+<div class="list" th:each="todoList:${todoLists}">
+    <span> <input type="checkbox" th:id="${todoList.id}"></span>
+    <span th:text="${todoList.description}"> </span>
+    <a th:href="@{/mytodolist/delete}+'/'+${todoList.id}"><button type="submit" value="Delete">Delete</button></a>
+</div>
+
+<script src="/js/script.js"></script>
+</body>
+
+</html>
