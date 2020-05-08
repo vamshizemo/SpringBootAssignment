@@ -1,6 +1,11 @@
 package com.vamshi.springboot.mytodolist.entity;
 
+import org.springframework.beans.propertyeditors.StringTrimmerEditor;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Null;
 
 @Entity
@@ -12,6 +17,7 @@ public class TodoList {
     @Column(name = "id")
     public int id;
 
+    @NotNull(message="is required")
     @Column(name = "description")
     public String description;
 
@@ -26,6 +32,7 @@ public class TodoList {
 
     @Column(name = "date")
     public String date;
+
 
     public int getId() {
         return id;

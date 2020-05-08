@@ -1,11 +1,12 @@
 var taskForm = document.getElementById("taskform");
 var inputTask=document.getElementById("intask");
-var cbox=document.getElementById("cbox");
+var cbox=document.getElementsByName("cbox");
 var resForm=document.getElementById("result");
 
 function getButton(id,value){
     let button = document.createElement("input");
     button.setAttribute("type", "submit");
+    button.setAttribute("class", "fb");
     button.setAttribute("id", id);
     button.value=value;
     return button;
@@ -13,13 +14,12 @@ function getButton(id,value){
 var buttona = getButton("top","Add Task");
 var inputValue;
 
-inputTask.onkeypress =  function(){
+inputTask.onkeyup =  function(){
     inputValue = inputTask.value;
-    if(inputValue.trim()!=null){
+    if(inputValue.trim()!=''){
         taskForm.appendChild(buttona);
     }else{
-        window.alert("no text");
-        taskForm.removeChild(button);
+        taskForm.removeChild(buttona);
     }
 }
 button1=getButton("first","Delete Task");
@@ -28,3 +28,13 @@ cbox.onclick=function(){
     else{resForm.removeChild(button1);}
 
 }
+function insertButton(checkbox){
+    let id=checkbox.getAttribute("id");
+    let anchors=document.getElementsByTagName("a");
+    for(anchor in anchors){
+    if(anchor.getAttribute("id")==id){anchor.appendChild(button1);}
+        else{anchor.removeChild(button1);}
+    }
+
+    }
+

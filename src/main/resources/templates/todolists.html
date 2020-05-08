@@ -7,20 +7,22 @@
     <link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
 <body>
+<div class="container">
+    <h2>VamshiRaghav - Spring Boot Assignment</h2>
 <h2>Your Todo Tasks</h2>
 <form action="#" id="taskform" th:action="@{/mytodolist/save}" th:object="${theTodoList}" method="POST">
-
+<span class="input_form">
 Add Task:
-    <input type="text" th:field="*{description}" id="intask" autocomplete="off">
-
+    <input type="text" th:field="*{description}" id="intask" autocomplete="off" class="input_field" >
+</span>
 </form>
-
+<br><br>
 <div class="list" th:each="todoList:${todoLists}">
-    <span> <input type="checkbox" th:id="${todoList.id}"></span>
+    <span> <input type="checkbox"  th:id="${todoList.id}" onclick='insertButton(this)'></span>
     <span th:text="${todoList.description}"> </span>
-    <a th:href="@{/mytodolist/delete}+'/'+${todoList.id}"><button type="submit" value="Delete">Delete</button></a>
+    <a id="result" th:href="@{/mytodolist/delete}+'/'+${todoList.id}" th:name="${todoList.id}"><button class="fb">Delete task</button></a>
 </div>
-
+</div>
 <script src="/js/script.js"></script>
 </body>
 
